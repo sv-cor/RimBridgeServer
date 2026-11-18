@@ -2552,7 +2552,7 @@ internal static class RimBridgeUiWorkbench
     }
 }
 
-[HarmonyPatch(typeof(Window), nameof(Window.InnerWindowOnGUI))]
+[HarmonyPatch(typeof(Window), "InnerWindowOnGUI")]
 internal static class Window_InnerWindowOnGUI_UiWorkbench_Patch
 {
     public static void Prefix(Window __instance)
@@ -2566,7 +2566,7 @@ internal static class Window_InnerWindowOnGUI_UiWorkbench_Patch
     }
 }
 
-[HarmonyPatch(typeof(InspectPaneUtility), nameof(InspectPaneUtility.DoTabs), new[] { typeof(IInspectPane) })]
+[HarmonyPatch(typeof(InspectPaneUtility), "DoTabs", new[] { typeof(IInspectPane) })]
 internal static class InspectPaneUtility_DoTabs_UiWorkbench_Patch
 {
     public static void Prefix(IInspectPane pane)

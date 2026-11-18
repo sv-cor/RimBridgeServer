@@ -28,6 +28,17 @@ It is designed to stay as close as possible to RimWorld's own logical seams inst
 
 RimWorld keeps running while its window is in the background, so agents can drive it without OS focus; the bridge restores this after RimWorld re-applies its preferences, without changing the saved preference.
 
+## RimWorld 1.7 Waylith 빌드
+
+Windows에서 .NET 10 SDK와 RimWorld 1.7, Harmony 1.7이 설치된 상태로 PowerShell에서 실행합니다.
+
+```powershell
+./scripts/build-waylith.ps1
+```
+
+경로가 다르면 `-GamePath`, `-HarmonyPath`, `-Dotnet`으로 지정합니다. 결과는 `artifacts/waylith/RimBridgeServer`에 생성됩니다. 이 폴더를 게임의 `Mods`에 복사하고 Harmony 뒤에 활성화합니다. Dubs 측정을 사용하려면 Dubs Performance Analyzer도 활성화합니다.
+
+이 빌드는 설치된 1.7 게임 어셈블리로 컴파일용 참조를 만듭니다. 소스에 포함된 1.6 릴리스의 브리지 공용 DLL을 재사용하며, 게임 자체의 DLL은 패키지에 포함하지 않습니다. 기존 1.6 빌드는 기존 스크립트로 관리합니다.
 ## Installation
 
 ### Recommended: Use GABS
