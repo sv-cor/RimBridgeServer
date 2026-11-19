@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics;
-using System.Reflection;
 using Lib.GAB.Server;
-using UnityEngine;
 using Verse;
 
 namespace RimBridgeServer;
@@ -93,18 +91,6 @@ internal static class RimBridgeStartup
                     RimBridgeCapabilities.Initialize();
                 using (RimBridgeStartupTiming.Phase("logs.initialize"))
                     RimBridgeLogs.Initialize(RimBridgeCapabilities.LogJournal);
-                using (RimBridgeStartupTiming.Phase("application.run-in-background"))
-                    Application.runInBackground = true;
-                using (RimBridgeStartupTiming.Phase("debug.playback-defaults"))
-                {
-                    typeof(DebugViewSettings)
-                        .GetField("showTpsCounter", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                        ?.SetValue(null, true);
-                    typeof(TickManager)
-                        .GetField("UltraSpeedBoost", BindingFlags.Static | BindingFlags.NonPublic)
-                        ?.SetValue(null, true);
-                }
-
                 RimBridgeTools tools;
                 using (RimBridgeStartupTiming.Phase("tools.construct"))
                     tools = new RimBridgeTools();
