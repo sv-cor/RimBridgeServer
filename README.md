@@ -379,6 +379,8 @@ Playback default: RimBridgeServer enables RimWorld's private `TickManager.UltraS
 - `rimworld/list_architect_designators` - List Architect designators for one category, flattening dropdown widgets into actionable child designators
 - `rimworld/select_architect_designator` - Select an Architect designator by stable id without relying on foreground UI interaction
 - `rimworld/apply_architect_designator` - Apply an Architect designator to one cell or a rectangle, with optional dry-run validation, material and rotation; zone designators create a new zone unless `rimworld/set_zone_target` chose an existing one
+- `rimworld/find_map_things` - Search visible spawned map objects by name, definition, kind or proximity
+- `rimworld/designate_map_things` - Mark exact map objects for mining, hauling or harvesting and verify each order
 - `rimworld/list_zones` - List current-map zones such as stockpiles and growing zones
 - `rimworld/list_areas` - List current-map areas such as home, roof, snow-clear, and allowed areas
 - `rimworld/create_allowed_area` - Create a new allowed area and optionally make it the selected allowed-area target

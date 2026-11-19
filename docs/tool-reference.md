@@ -6,9 +6,9 @@ This is the full annotation-driven tool reference. The main README stays beginne
 
 ## Summary
 
-- `128` tools total
+- `130` tools total
 - `18` `rimbridge/*` tools
-- `110` `rimworld/*` tools
+- `112` `rimworld/*` tools
 
 ## `rimbridge/*`
 
@@ -464,6 +464,31 @@ Parameters:
 - `keepSelected` (`bool`, `optional`, default `true`): Keep the designator selected after the call completes
 - `stuffDefName` (`string`, `optional`, default `null`): Optional material defName for build designators of things made from stuff, such as BlocksGranite, Steel or WoodLog; the error lists allowed materials
 - `rotation` (`string`, `optional`, default `null`): Optional placement rotation for build designators: north, east, south or west
+
+### `rimworld/find_map_things`
+
+Search visible spawned map objects without reading tiles. Exact and partial matches rank above typo matches. Pass a kind and coordinates when the name is unknown.
+
+Parameters:
+- `name` (`string`, `optional`, default `null`): Localized name or internal name, possibly incomplete
+- `defName` (`string`, `optional`, default `null`): Exact ThingDef name
+- `kind` (`string`, `optional`, default `"any"`): any, item, mineable, building, plant or pawn
+- `x` (`int?`, `optional`, default `null`): Optional center x coordinate
+- `z` (`int?`, `optional`, default `null`): Optional center z coordinate
+- `radius` (`int?`, `optional`, default `null`): Optional radius in cells; requires both center coordinates
+- `fuzzy` (`bool`, `optional`, default `true`): Include approximate name matches
+- `limit` (`int`, `optional`, default `40`): Maximum results, 1 to 100
+- `offset` (`int`, `optional`, default `0`): Pagination offset, use nextOffset from the previous response
+
+### `rimworld/designate_map_things`
+
+Validate and apply a vanilla work designation to each supplied visible thing ID on the specified current map. Returns applied, already_designated, accepted or rejected per target.
+
+Parameters:
+- `mapId` (`string`, `required`): Map ID returned by find_map_things
+- `thingIds` (`string[]`, `required`): Between 1 and 100 exact thing IDs returned by find_map_things
+- `action` (`string`, `required`): Work order: mine, haul or harvest
+- `dryRun` (`bool`, `optional`, default `false`): Check every target without creating a designation
 
 ### `rimworld/list_zones`
 

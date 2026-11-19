@@ -507,6 +507,35 @@ public class RimBridgeTools
         return InvokeAlias(Arguments((nameof(designatorId), designatorId), (nameof(x), x), (nameof(z), z), (nameof(width), width), (nameof(height), height), (nameof(dryRun), dryRun), (nameof(keepSelected), keepSelected), (nameof(stuffDefName), stuffDefName), (nameof(rotation), rotation)));
     }
 
+    [ReadmeTool("Architect And Map State", "Search visible spawned map objects by name, definition, kind or proximity")]
+    [Tool("rimworld/find_map_things", Description = "Search visible spawned map objects without reading tiles. Exact and partial matches rank above typo matches. Pass a kind and coordinates when the name is unknown.")]
+    public object FindMapThings(
+        [ToolParameter(Description = "Localized name or internal name, possibly incomplete")] string name = null,
+        [ToolParameter(Description = "Exact ThingDef name")] string defName = null,
+        [ToolParameter(Description = "any, item, mineable, building, plant or pawn")] string kind = "any",
+        [ToolParameter(Description = "Optional center x coordinate")] int? x = null,
+        [ToolParameter(Description = "Optional center z coordinate")] int? z = null,
+        [ToolParameter(Description = "Optional radius in cells; requires both center coordinates")] int? radius = null,
+        [ToolParameter(Description = "Include approximate name matches")] bool fuzzy = true,
+        [ToolParameter(Description = "Maximum results, 1 to 100")] int limit = 40,
+        [ToolParameter(Description = "Pagination offset, use nextOffset from the previous response")] int offset = 0)
+    {
+        return InvokeAlias(Arguments((nameof(name), name), (nameof(defName), defName), (nameof(kind), kind),
+            (nameof(x), x), (nameof(z), z), (nameof(radius), radius), (nameof(fuzzy), fuzzy), (nameof(limit), limit), (nameof(offset), offset)));
+    }
+
+    [ReadmeTool("Architect And Map State", "Mark exact map objects for mining, hauling or harvesting and verify each order")]
+    [Tool("rimworld/designate_map_things", Description = "Validate and apply a vanilla work designation to each supplied visible thing ID on the specified current map. Returns applied, already_designated, accepted or rejected per target.")]
+    public object DesignateMapThings(
+        [ToolParameter(Description = "Map ID returned by find_map_things")] string mapId,
+        [ToolParameter(Description = "Between 1 and 100 exact thing IDs returned by find_map_things")] string[] thingIds,
+        [ToolParameter(Description = "Work order: mine, haul or harvest")] string action,
+        [ToolParameter(Description = "Check every target without creating a designation")] bool dryRun = false)
+    {
+        return InvokeAlias(Arguments((nameof(mapId), mapId), (nameof(thingIds), thingIds), (nameof(action), action), (nameof(dryRun), dryRun)));
+    }
+
+
     [ReadmeTool("Architect And Map State", "List current-map zones such as stockpiles and growing zones")]
     [Tool("rimworld/list_zones", Description = "List current-map zones such as stockpiles and growing zones")]
     public object ListZones(

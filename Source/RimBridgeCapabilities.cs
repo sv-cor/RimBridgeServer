@@ -73,6 +73,12 @@ internal static class RimBridgeCapabilities
             aliasMetadataType: typeof(RimBridgeTools),
             source: CapabilitySourceKind.Optional));
         registry.RegisterProvider(new BuiltInCapabilityModuleProvider(
+            providerId: "rimbridge.optional/map-things",
+            category: "architect",
+            module: new MapThingsCapabilityModule(),
+            aliasMetadataType: typeof(RimBridgeTools),
+            source: CapabilitySourceKind.Optional));
+        registry.RegisterProvider(new BuiltInCapabilityModuleProvider(
             providerId: "rimbridge.core/input",
             category: "input",
             module: new InputCapabilityModule(),
